@@ -2,7 +2,7 @@ from random import choice
 from string import digits, ascii_lowercase
 import requests, fake_headers
 from os.path import getsize
-from os import remove
+from os import remove, listdir, mkdir
 import threading
 
 
@@ -11,6 +11,11 @@ CHARACTERS = digits + ascii_lowercase
 IMAGE_EXTENTIONS = [".webp", ".png", ".jpg"]
 IMAGE_COUNTER = 0
 THREADS = 12
+
+
+# Check for image directory
+if "images" not in listdir():
+    mkdir("images")
 
 
 def generate_urlId() -> str:
