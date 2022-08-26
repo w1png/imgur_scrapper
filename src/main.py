@@ -17,13 +17,14 @@ THREADS = 12
 if "images" not in listdir():
     mkdir("images")
 
+print("Starting download!")
+
 
 def generate_urlId() -> str:
     return "".join([choice(CHARACTERS) for _ in range(6)]) + choice(IMAGE_EXTENTIONS)
 
 
 def download() -> None:
-    print("Starting download!")
     urlId = generate_urlId()
     url = BASE_URL + urlId
     filename = "images/" + urlId
@@ -32,7 +33,7 @@ def download() -> None:
         f.write(requests.get(url, headers=fake_headers.make_header()).content)
 
     if getsize(filename) < 10000:
-        print(f"Download failed for {urlId}")
+        # print(f"Download failed for {urlId}")
         return remove(filename)
    
     global IMAGE_COUNTER
